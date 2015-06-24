@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Address Book</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+<script>
+function getContacts() {
+    $.getJSON("http://localhost:8080/addressbook/contacts", updateContacts);
+};
+
+function updateContacts(contacts) {
+    var ul = document.getElementById("contacts");
+	$.each( contacts, function( index, contact ){
+	    var li = document.createElement("li");
+	    li.appendChild(document.createTextNode(contact.name));
+	    ul.appendChild(li);
+	});
+}
+</script>
+</head>
+<body onload="getContacts();">
+<h1>Address Book</h1>
+<ol id="contacts">
+</ol>
+</body>
+</html>
